@@ -41,7 +41,7 @@ coverage/
 # ===============================
 # AWS / credentials
 # ===============================
-aws-config.json
+config/
 
 # ===============================
 # Mongo local files (if any)
