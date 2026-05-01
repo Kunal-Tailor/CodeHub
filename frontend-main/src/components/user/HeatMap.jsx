@@ -10,7 +10,7 @@ const generateActivityData = (startDate, endDate) => {
   while (currentDate <= end) {
     const count = Math.floor(Math.random() * 50);
     data.push({
-      date: currentDate.toISOString().split("T")[0], //YYY-MM-DD
+      date: currentDate.toISOString().split("T")[0], //YYYY-MM-DD
       count: count,
     });
     currentDate.setDate(currentDate.getDate() + 1);
@@ -35,8 +35,11 @@ const HeatMapProfile = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const startDate = "2001-01-01";
-      const endDate = "2001-01-31";
+      // Use current year for the heatmap
+      const now = new Date();
+      const year = now.getFullYear();
+      const startDate = `${year}-01-01`;
+      const endDate = `${year}-12-31`;
       const data = generateActivityData(startDate, endDate);
       setActivityData(data);
 
@@ -47,19 +50,24 @@ const HeatMapProfile = () => {
     fetchData();
   }, []);
 
+  const now = new Date();
+  const year = now.getFullYear();
+
   return (
     <div>
-      <h4>Recent Contributions</h4>
+      <h4 style={{ marginBottom: "16px", fontSize: "14px", fontWeight: 600 }}>
+        {activityData.reduce((sum, d) => sum + d.count, 0)} contributions in {year}
+      </h4>
       <HeatMap
         className="HeatMapProfile"
-        style={{ maxWidth: "700px", height: "200px", color: "white" }}
+        style={{ maxWidth: "100%", height: "200px", color: "var(--color-text-muted)" }}
         value={activityData}
-        weekLabels={["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]}
-        startDate={new Date("2001-01-01")}
-        rectSize={15}
+        weekLabels={["", "Mon", "", "Wed", "", "Fri", ""]}
+        startDate={new Date(`${year}-01-01`)}
+        rectSize={12}
         space={3}
         rectProps={{
-          rx: 2.5,
+          rx: 2,
         }}
         panelColors={panelColors}
       />

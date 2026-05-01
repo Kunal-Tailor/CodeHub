@@ -1,0 +1,152 @@
+/* ===== Create Repository Page ===== */
+.create-repo-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.create-repo-form-wrapper h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.create-repo-subtitle {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border-default);
+  margin: 24px 0;
+}
+
+.create-repo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.required {
+  color: var(--color-accent-red);
+}
+
+.optional {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.form-input {
+  padding: 6px 12px;
+  background-color: var(--color-bg-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
+}
+
+.form-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.form-hint {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* Visibility Options */
+.visibility-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.visibility-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  background-color: var(--color-bg-primary);
+}
+
+.visibility-option:hover {
+  border-color: var(--color-text-muted);
+}
+
+.visibility-option.active {
+  border-color: var(--color-accent-primary);
+  background-color: rgba(88, 166, 255, 0.05);
+}
+
+.visibility-option input[type="radio"] {
+  display: none;
+}
+
+.visibility-icon {
+  color: var(--color-text-muted);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.visibility-option.active .visibility-icon {
+  color: var(--color-accent-primary);
+}
+
+.visibility-option strong {
+  font-size: 14px;
+  color: var(--color-text-primary);
+}
+
+.visibility-option p {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* Create button */
+.btn-create {
+  background-color: var(--color-btn-primary);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  align-self: flex-start;
+}
+
+.btn-create:hover:not(:disabled) {
+  background-color: var(--color-btn-primary-hover);
+}
+
+.btn-create:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

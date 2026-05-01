@@ -16,6 +16,11 @@ async function createIssue(req, res) {
 
     await issue.save();
 
+    // Also push the issue ID into the repository's issues array
+    await Repository.findByIdAndUpdate(id, {
+      $push: { issues: issue._id },
+    });
+
     res.status(201).json(issue);
   } catch (err) {
     console.error("Error during issue creation : ", err.message);
@@ -39,7 +44,7 @@ async function updateIssueById(req, res) {
 
     await issue.save();
 
-    res.json(issue, { message: "Issue updated" });
+    res.json({ message: "Issue updated", issue });
   } catch (err) {
     console.error("Error during issue updation : ", err.message);
     res.status(500).send("Server error");
@@ -50,7 +55,7 @@ async function deleteIssueById(req, res) {
   const { id } = req.params;
 
   try {
-    const issue = Issue.findByIdAndDelete(id);
+    const issue = await Issue.findByIdAndDelete(id);
 
     if (!issue) {
       return res.status(404).json({ error: "Issue not found!" });
@@ -66,7 +71,7 @@ async function getAllIssues(req, res) {
   const { id } = req.params;
 
   try {
-    const issues = Issue.find({ repository: id });
+    const issues = await Issue.find({ repository: id });
 
     if (!issues) {
       return res.status(404).json({ error: "Issues not found!" });
@@ -89,7 +94,7 @@ async function getIssueById(req, res) {
 
     res.json(issue);
   } catch (err) {
-    console.error("Error during issue updation : ", err.message);
+    console.error("Error during issue fetching : ", err.message);
     res.status(500).send("Server error");
   }
 }
